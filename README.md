@@ -1,7 +1,7 @@
 
 | License | Platform | AppVeyor | Contribute |
 | --- | --- | --- | --- |
-| ![License](https://img.shields.io/badge/license-MIT-orange.svg) | ![Platform](https://img.shields.io/badge/platform-android-green.svg) | [![Build status](https://ci.appveyor.com/api/projects/status/github/andreszs/cordova-plugin-sms-receive?branch=master&svg=true)](https://ci.appveyor.com/project/andreszs/cordova-plugin-tiles) | [![Donate](https://img.shields.io/badge/donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G33QACCVKYD7U) |
+| ![License](https://img.shields.io/badge/license-MIT-orange.svg) | ![Platform](https://img.shields.io/badge/platform-android-green.svg) | [![Build status](https://ci.appveyor.com/api/projects/status/github/andreszs/cordova-plugin-sms-receive?branch=master&svg=true)](https://ci.appveyor.com/project/andreszs/cordova-plugin-sms-receive) | [![Donate](https://img.shields.io/badge/donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G33QACCVKYD7U) |
 
 # cordova-plugin-sms-receive
 
