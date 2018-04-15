@@ -1,4 +1,5 @@
 
+
 | License | Platform | Contribute |
 | --- | --- | --- |
 | ![License](https://img.shields.io/badge/license-MIT-orange.svg) | ![Platform](https://img.shields.io/badge/platform-android-green.svg) | [![Donate](https://img.shields.io/badge/donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G33QACCVKYD7U) |
@@ -81,6 +82,8 @@ Here are some screens from the **SMSReceiverDemo** sample app included in the de
 ![ScreenShot](demo/screenshot2.png)
 
 ![ScreenShot](demo/screenshot3.png)
+
+***Notice:** The previous screenshot shows an `undefined` SMS service centre number because this testing was performed in the emulator. On a real device, the correct SMS center number used to deliver the message will be shown.*
 
 ## About this Plugin
 
