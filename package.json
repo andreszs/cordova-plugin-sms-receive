@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-sms-receive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cordova plugin to receive SMS in Android",
   "cordova": {
     "id": "cordova-plugin-sms-receive",
