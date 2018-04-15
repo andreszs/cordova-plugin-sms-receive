@@ -62,7 +62,7 @@ document.addEventListener('onSMSArrive', function(e) {
 });
 ```
 
-## Demo
+## Demo App
 
 To test this plugin in a Cordova app using the provided sample:
 
@@ -79,6 +79,8 @@ Here are some screens from the **SMSReceiverDemo** sample app included in the de
 ![ScreenShot](demo/screenshot1.png)
 
 ![ScreenShot](demo/screenshot2.png)
+
+![ScreenShot](demo/screenshot3.png)
 
 ## About this Plugin
 
