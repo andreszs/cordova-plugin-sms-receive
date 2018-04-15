@@ -1,0 +1,39 @@
+{
+  "name": "cordova-plugin-sms-receive",
+  "version": "1.0.0",
+  "description": "Cordova plugin to receive SMS in Android",
+  "cordova": {
+    "id": "cordova-plugin-sms-receive",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andreszs/cordova-plugin-sms-receive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreszs/cordova-plugin-sms-receive/issues"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "sms",
+    "receive"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=6.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=4"
+    },
+  ],
+  "author": {
+    "name": "Andres Zsogon",
+    "email": "andreszs@users.noreply.github.com"
+  },
+  "license": "MIT"
+}

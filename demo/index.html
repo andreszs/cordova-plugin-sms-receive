@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>cordova-plugin-sms-receive demo</title>
+</head>
+<body style="background:#E0E0E0;max-width:100%;padding:8px;box-sizing:border-box">
+
+    <h1 style="font-size:18px">cordova-plugin-sms-receive demo</h1><br />
+    <fieldset>
+        <legend>Methods</legend>
+        <button type="button" id="startWatch" style="padding:4px;margin:4px 0">SMSReceive.startWatch()</button>
+        <button type="button" id="stopWatch" style="padding:4px;margin:4px 0">SMSReceive.stopWatch()</button><br />
+        <label><small>On Android 6+ the permission dialog will show up to request SMS receiving permission.</small></label>
+    </fieldset>
+    <fieldset>
+        <legend>Status</legend>
+        <label id="status" style="color:#F4511E;word-break:break-all">SMS watching not started.</label>
+    </fieldset>
+    <fieldset>
+        <legend>Events</legend>
+        <label id="event" style="color:#9C27B0;word-break:break-all">Waiting for event.</label>
+    </fieldset>
+    <fieldset>
+        <legend>About</legend>
+        <label><strong>Please contribute</strong> with a small PayPal donation to support my plugins and keep them updated. Check out GitHub for details.</label><br />
+    </fieldset>
+    <fieldset>
+        <legend>GitHub Page</legend>
+        <label>Refer to this page to send feedback, contributions or more info.</label><br />
+        <label style="color:blue;text-transform:lowercase">http://github.com/andreszs/cordova-plugin-sms-receive</label>
+    </fieldset>
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>
