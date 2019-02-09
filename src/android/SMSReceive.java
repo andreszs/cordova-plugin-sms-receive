@@ -102,7 +102,7 @@ public class SMSReceive extends CordovaPlugin {
 			for (int j=0; j<nCol; j++) {
 				switch(cur.getType(j)) {
 					case Cursor.FIELD_TYPE_NULL:
-						json.put(keys[j], null);
+						json.put(keys[j], JSONObject.NULL);
 					break;
 					case Cursor.FIELD_TYPE_INTEGER:
 						json.put(keys[j], cur.getLong(j));
