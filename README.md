@@ -94,7 +94,7 @@ document.addEventListener('onSMSArrive', function(message) {
 
 You can download the compiled [SMS Receive plugin demo](https://www.andreszsogon.com/cordova-sms-receive-plugin-demo/ "plugin demo app") app and inspect the source code in my [plugin demos repository](https://github.com/andreszs/cordova-plugin-demos "plugin demos repository").
 
-![ScreenShot](demo/screenshot4.png) ![ScreenShot](demo/screenshot5.png) ![ScreenShot](demo/screenshot6.png)
+[![ScreenShot](demo/screenshot.png)](https://www.andreszsogon.com/cordova-sms-receive-plugin-demo/)
 
 # FAQ
 
