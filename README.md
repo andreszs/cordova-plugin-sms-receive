@@ -53,6 +53,8 @@ cordova.plugins.SMSReceive.startWatch(function(strSuccess) {
 
 Stops listening for incoming SMS. Always invoke this method after you have received the required SMS to [prevent memory leaks](https://stackoverflow.com/questions/41139537/why-not-doing-unregisterreceiverbroadcastreceiver-while-destroy-the-activity-w).
 
+:warning:  Method moved from **window** to **cordova.plugins** object in version 2.0.0
+
 ### Success callback return values
 
 - **SMS_WATCHING_STOPPED**
