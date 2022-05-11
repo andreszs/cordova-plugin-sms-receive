@@ -79,8 +79,8 @@ Triggered when a new SMS has arrived. You need call **startWatch** first.
 
 ### Remarks
 
-- Success in reading and parsing incoming SMS trigger the success callback from **startWatch**.
-- Failure in reading or parsing incoming SMS trigger the error callback from **startWatch**.
+- Success in reading incoming SMS will trigger the startWatch success callback.
+- Failure in reading incoming SMS will trigger the startWatch error callback.
 
 ### Example
 
