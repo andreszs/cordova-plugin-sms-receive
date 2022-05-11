@@ -82,6 +82,14 @@ Triggered when a new SMS has arrived. You need call **startWatch** first.
 - Success in reading incoming SMS will trigger the startWatch success callback.
 - Failure in reading incoming SMS will trigger the startWatch error callback.
 
+### Return values
+
+JSON object with these properties:
+
+- **address**: Mobile number from sender
+- **body**: SMS message body limited to 154 chars.
+- **date**: SMS received timestamp.
+
 ### Example
 
 ```javascript
