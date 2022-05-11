@@ -21,17 +21,23 @@ Start listening for incoming SMS messages. This will request SMS permission to t
 
 :warning:  Method moved from **window** to **cordova.plugins** object in version 2.0.0
 
+### Remarks
+
+- Both success and error callbacks will react to SMS arrival events as well.
+- Android 5.1 grants permission by default because the individual permission request dialog was added in Android 6.
+
 ### Success callback return values
 
 - **SMS_WATCHING_STARTED**
 - **SMS_WATCHING_ALREADY_STARTED**
+- **SMS_RECEIVED**: Second callback, triggered when a SMS was received.
 
 ### Error callback return values
 
 - **PERMISSION_DENIED**: User declined the permission request.
 - **SMS_EQUALS_NULL**: Triggered after watching started OK but plugin failed to read the received SMS.
+- Any other error string for failed SMS retrieval whenever an SMS is received.
 
-On Android 5.1 the SMS permission will be granted by default.
 
 ### Example
 
@@ -71,7 +77,8 @@ Triggered when a new SMS has arrived. You need call **startWatch** first.
 
 ### Remarks
 
-Whenever an error ocurrs with the SMS reading/parsing process, the errorCallback from **startWatch** will trigger to return the corresponding error. The **onSMSArrive** event only triggers for correctly received messages and does not return errors.
+1. Success in reading and parsing incoming SMS trigger the success callback from **startWatch**.
+2. Failure in reading or parsing incoming SMS trigger the error callback from **startWatch**.
 
 ### Example
 
