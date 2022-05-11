@@ -1,145 +1,133 @@
 
 
-| License | Platform | Contribute |
-| --- | --- | --- |
-| ![License](https://img.shields.io/badge/license-MIT-orange.svg) | ![Platform](https://img.shields.io/badge/platform-android-green.svg) | [![Donate](https://img.shields.io/badge/donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G33QACCVKYD7U) |
+![License](https://img.shields.io/badge/license-MIT-orange.svg) ![Platform](https://img.shields.io/badge/platform-android-green.svg) [![Donate](https://img.shields.io/badge/donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G33QACCVKYD7U)
 
 # cordova-plugin-sms-receive
 
 Cordova plugin to get received SMS contents in Android platform.
 
-## Installation
+# Installation
 
-Use the plugin with Cordova CLI (v6.x or above):
+Add the plugin from NPM:
 ```bash
 cordova plugin add cordova-plugin-sms-receive
 ```
 
-## Methods
+# Methods
+
+## startWatch
+
+Start listening for incoming SMS messages. This will request SMS permission to the user if not yet granted.
+
+:warning:  Method moved from **window** to **cordova.plugins** object in version 2.0.0
+
+### Success callback return values
+
+- **SMS_WATCHING_STARTED**
+- **SMS_WATCHING_ALREADY_STARTED**
+
+### Error callback return values
+
+- **PERMISSION_DENIED**: User declined the permission request.
+- **SMS_EQUALS_NULL**: Triggered after watching started OK but plugin failed to read the received SMS.
+
+On Android 5.1 the SMS permission will be granted by default.
+
+### Example
 
 ```javascript
-SMSReceive.startWatch(successCallback, failureCallback);
-SMSReceive.stopWatch(successCallback, failureCallback);
-```
-### SMSReceive.startWatch(successCallback, failureCallback)
-
-Start listening for incoming SMS and raise the **onSMSArrive** event when this happens. Example usage:
-
-```javascript
-SMSReceive.startWatch(function() {
-	console.log('smsreceive: watching started');
-}, function() {
-	console.warn('smsreceive: failed to start watching');
+cordova.plugins.SMSReceive.startWatch(function(strSuccess) {
+	console.log(strSuccess);
+}, function(strError) {
+	console.warn(strError);
 });
 ```
 
-### SMSReceive.stopWatch(successCallback, failureCallback)
+## stopWatch
 
-Stops listening for incoming SMS. **Important!** Always invoke this method after you have received the required SMS to [prevent memory leaks](https://stackoverflow.com/questions/41139537/why-not-doing-unregisterreceiverbroadcastreceiver-while-destroy-the-activity-w).
+Stops listening for incoming SMS. Always invoke this method after you have received the required SMS to [prevent memory leaks](https://stackoverflow.com/questions/41139537/why-not-doing-unregisterreceiverbroadcastreceiver-while-destroy-the-activity-w).
+
+### Success callback return values
+
+- **SMS_WATCHING_STOPPED**
+
+### Example
 
 ```javascript
-SMSReceive.stopWatch(function() {
-	console.log('smsreceive: watching stopped');
-}, function() {
-	console.warn('smsreceive: failed to stop watching');
+cordova.plugins.SMSReceive.stopWatch(function(strSuccess) {
+	console.log(strSuccess);
+}, function(strError) {
+	console.warn(strError);
 });
 ```
 
-## Events
+# Events
 
-### onSMSArrive
+## onSMSArrive
 
-Triggered when a new SMS has arrived. You need call **startWatch()** first.
+Triggered when a new SMS has arrived. You need call **startWatch** first.
+
+:warning:  JSON SMS payload moved from **message.data** to **message** object in version 2.0.0
+
+### Remarks
+
+Whenever an error ocurrs with the SMS reading/parsing process, the errorCallback from **startWatch** will trigger to return the corresponding error. The **onSMSArrive** event only triggers for correctly received messages and does not return errors.
+
+### Example
 
 ```javascript
-/* Initialize incoming SMS event listener */
-document.addEventListener('onSMSArrive', function(e) {
-	console.log('onSMSArrive()');
-	var IncomingSMS = e.data;
-	console.log('sms.address:' + IncomingSMS.address);
-	console.log('sms.body:' + IncomingSMS.body);
-	/* Debug received SMS content (JSON) */
-	console.log(JSON.stringify(IncomingSMS));
+document.addEventListener('onSMSArrive', function(message) {
+	console.log('address:' + message.address);
+	console.log('body:' + message.body);
+	console.log('date' + message.date)
 });
 ```
 
-## Demo App
+# Plugin demo app
 
-To test this plugin in a Cordova app using the provided sample:
+You can download the compiled [SMS Receive plugin demo](https://www.andreszsogon.com/cordova-sms-receive-plugin-demo/ "plugin demo app") app and inspect the source code in my [plugin demos repository](https://github.com/andreszs/cordova-plugin-demos "plugin demos repository").
 
- 1. Create a blank cordova app as you regularly do.
- 2. Install it using the plugin id `cordova-plugin-sms-receive`
- 3. Replace your `index.html` with the one provided here at the `demo` folder
- 4. Start the app in your emulator or device and test the plugin.
- 5. When you are satisfied, kindly send a donation using the PayPal button on this page.
+![ScreenShot](demo/screenshot4.png) ![ScreenShot](demo/screenshot5.png) ![ScreenShot](demo/screenshot6.png)
 
-## Screenshots
+# FAQ
 
-Here are some screens from the **SMSReceiverDemo** sample app included in the demo folder. Feel free to try this demo in whatever device you find.
-
-![ScreenShot](demo/screenshot1.png)
-
-![ScreenShot](demo/screenshot2.png)
-
-![ScreenShot](demo/screenshot3.png)
-
-***Notice:** The previous screenshot shows an `undefined` SMS service centre number because this testing was performed in the emulator. On a real device, the correct SMS center number used to deliver the message will be shown.*
-
-## About this Plugin
-
-### Why this plugin has been created?
-
-This plugin has been written based on dozens of samples around the web because **existing plugins have some issues**:
-
- - They request too many useless permissions
- - They are too complex, unreliable or outdated
- - They ignore the [Android 6.0 permission model](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#android-permissions)
+### Can the SMS be intercepted and deleted?
 
 This plugin does not send SMS nor *intercept* incoming SMS: the intercepting feature has been removed in Android 5 or earlier for security concerns, so no plugin can do this anymore.
-
-### How this plugin has been tested?
-
-I have tested this plugin with success on:
-
- - Android 4.0.3 emulator
- - Android 5.1.1 emulator
- - Android 6.0 emulator
- - Android 7.1.1 emulator
- - BLU Vivo 4 (Android 4.1.1 Jelly Bean)
- - BLU Energy Mini (Android 5.1 Lollipop)
- - BLU Vivo 5 Mini (Android 6.0 Marshmallow)
- - BLU Studio J8 (Android 7.0 Nougat)
- - Samsung Galaxy S6810 (Android 4.1.2 Jelly Bean)
- - Samsung Galaxy I9190 (Android 4.4.2 KitKat)
-
-Yes, I know: all my phones are **deprecated or obsolete** ... If you want me to test the plugin in **Android 8+**, kindly send a generous donation to help me acquire a [Sony Xperia XZ1](https://www.gsmarena.com/sony_xperia_xz1_compact-8610.php) device. You'll also get almost-instant Email support from me if you have any questions.
 
 ### Does the plugin still work with the app minimized?
 
 When the app is sent to the background, as long as Android has not unloaded it to recover memory, SMS watching will remain active and working correctly.
 
-### Android 6.0+ Permissions Request
+### Android Permissions Request
 
-The `SMSReceive.startWatch()` method will cause the Android permission dialog to show up with this message:
+The **startWatch** method will cause the Android 6.0 and higher permission dialog to show up with this message:
 
 > Allow [AppName] to send and view SMS messages?
-> [DENY] [ALLOW]
 
 This message is not exactly accurate, because the plugin only requests permission for **receiving SMS** as follows:
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
-## Contributing
+### How this plugin has been tested?
 
-Please consider contributing with a small **donation** using the PayPal button at the top if you liked this plugin and it works as expected. This will allow me to get newer, more up-to-date phones to test my work.
+This plugin has been successfully tested in devices and emulators ranging from Android 5.1 to Android 10.
 
-For support, you may post in the **Issues** section. Be aware that I don't have much time for dealing with Java and the Android APIs, so before you start complaining that *X does not work*, make sure to compare the plugin behavior across different devices and emulators in order to locate the exact source of the problem.
+# Contributing
+
+If you find any bugs or want to improve the plugin, kindle subtmit a **PR** and it will be merged as soon as possible.
 
 Even if you don't quite understand Java, you can investigate and locate issues with the plugin code by opening the **SMSReceive.java** file and browsing StackOverflow or the Android APIs documentation with the proper keywords.
 
-## How to post Issues
+# Changelog
 
-If you are convinced that the plugin needs to be fixed / updated, kindly **post your issue in full detail**, including Android version, device brand and name, Cordova and cordova-android versions.
-
-Please don't expect me to instantly reply with a magical solution or a new plugin version, but I'll try to help in whatever I can. I'm interested in mantaining this plugin in a working condition, so try to send useful, constructive feedback whenever possible.
-
+### 2.0.0
+- :warning: Methods moved from the global **window** to the **cordova.plugins** object.
+- :warning: **onSMSArrive** no longer returns result in the **message.data** object, use **message** directly
+- Fixed SMS message body, now returns the entire message without 154 chars limit.
+- Fixed error when trying to start SMS watching when already active.
+- Changed the **onSMSArrive** invoking method internally to use native PluginResult callback.
+- Removed the SMS service center number from the JSON payload.
+- Improved all methods return values to make them easier to parse.
+- Improved error handling.
+- Updated demo app, now available as pre-compiled APK.

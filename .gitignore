@@ -12,3 +12,4 @@ Thumbs.db
 *.log
 *.swp
 *.user
+/nbproject/private/

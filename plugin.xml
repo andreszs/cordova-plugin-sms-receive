@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	id="cordova-plugin-sms-receive"
-	version="1.0.2">
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  id="cordova-plugin-sms-receive"
+		  version="2.0.0">
 
 	<name>SMS Receive</name>
 	<description>Cordova plugin to receive SMS in Android</description>
@@ -12,18 +12,19 @@
 	<keywords>sms,receive</keywords>
 
 	<engines>
-		<engine name="cordova" version=">=6.0.0" />
+		<engine name="cordova" version=">=9.0.0"/>
+		<engine name="cordova-android" version=">=8.0.0"/>
 	</engines>
 
 	<js-module src="www/SMSReceive.js" name="SMSReceive">
-		<clobbers target="window.SMSReceive" />
+		<clobbers target="cordova.plugins.SMSReceive" />
 	</js-module>
 
 	<!-- android -->
 	<platform name="android">
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="SMSReceive">
-			<param name="android-package" value="com.andreszs.cordova.sms.SMSReceive"/>
+				<param name="android-package" value="com.andreszs.smsreceive.SMSReceive"/>
 			</feature>
 		</config-file>
 
@@ -32,7 +33,7 @@
 			<uses-permission android:name="android.permission.RECEIVE_SMS" />
 		</config-file>
 
-		<source-file src="src/android/SMSReceive.java" target-dir="src/com/andreszs/cordova/sms" />
+		<source-file src="src/android/SMSReceive.java" target-dir="src/com/andreszs/smsreceive" />
 	</platform>
 
 </plugin>
